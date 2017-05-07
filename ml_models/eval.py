@@ -97,8 +97,7 @@ def test(tau):
 	print "Training"
 	for i, (user, yay_venues) in enumerate(testv_pairs.iteritems()):
 		print "Training on user", i, user
-		yay_venues_holdout = testp_pairs[user]
-		labels, yay_pairs, nay_pairs = generate_features_tr(all_venues, yay_venues, yay_venues_holdout)
+		labels, yay_pairs, nay_pairs = generate_features_tr(all_venues, yay_venues)
 		yay_features, nay_features = extractor.transform(yay_pairs), extractor.transform(nay_pairs)
 		features = sp.vstack([yay_features, nay_features])
 		model.partial_fit(features, labels, classes=[0, 1])
